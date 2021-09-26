@@ -39,5 +39,11 @@ namespace WebApplication5.Controllers
             return await _servicePessoa.ListPessoasAsync();
         }
 
+        [HttpDelete("{id}")]
+        public async Task<string> DeletarPessoa(long id)
+        {
+          return  await _servicePessoa.DeletarPessoaAsync(id);
+        }
+
     }
 }

@@ -10,5 +10,6 @@ namespace WebApplication5.ServicesPessoa.Interface
         Task<PessoaModel> AddPessoaAsync(PessoaModel modelo);
         Task<PessoaModel>GetPessoaIDAsync(long id);
         Task <List<PessoaModel>> ListPessoasAsync();
+        Task<string> DeletarPessoaAsync(long id);
     }
 }

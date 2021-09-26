@@ -38,7 +38,7 @@ namespace WebApplication5
             services.AddTransient<IviaCEP, viaCEP>();
             services.AddTransient<IServicePessoa, ServicePessoa>();
             services.AddTransient<IReposPessoa, ReposPessoa>();
-            services.AddDbContext<PessoaContext>((options) => options.UseNpgsql("Host=localhost;Port=5432;Database=apiendereco;Username=postgres;Password=12345"));
+            services.AddDbContext<PessoaContext>((options) => options.UseNpgsql(Configuration.GetConnectionString("DBase")));
             services.AddSwaggerGen();
 
         }

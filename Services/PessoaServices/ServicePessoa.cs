@@ -34,6 +34,10 @@ namespace WebApplication5.Services.PessoaServices
             return modelo;
         }
 
+        public Task<string> DeletarPessoaAsync(long id)
+        {
+            return _pessoa.DeletarPessoaAsync(id);
+        }
 
         public Task<PessoaModel> GetPessoaIDAsync(long id)
         {

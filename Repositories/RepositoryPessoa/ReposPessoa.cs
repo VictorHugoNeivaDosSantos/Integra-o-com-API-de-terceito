@@ -24,7 +24,6 @@ namespace WebApplication5.ServicesPessoa
             await _context.Pessoa.AddAsync(modelo);
             await _context.SaveChangesAsync();
             return modelo;
-
         }
 
         public async Task<PessoaModel> GetPessoaIDAsync(long id)
@@ -34,7 +33,24 @@ namespace WebApplication5.ServicesPessoa
 
         public async Task<List<PessoaModel>> ListPessoasAsync()
         {
-           return await _context.Pessoa.ToListAsync();
+            return await _context.Pessoa.ToListAsync();
+        }
+
+        public async Task<string> DeletarPessoaAsync(long id)
+        {
+            var pessoa = _context.Pessoa.Where(w => w.Id == id);
+
+            if (pessoa != null)
+            {
+                _context.Pessoa.Remove(pessoa.FirstOrDefault());
+                await _context.SaveChangesAsync();
+                return "Exclusão realizada com sucesso!";
+            }
+            else
+            {
+                return "Pessoa não encontrada";
+            }
+
         }
     }
 }
