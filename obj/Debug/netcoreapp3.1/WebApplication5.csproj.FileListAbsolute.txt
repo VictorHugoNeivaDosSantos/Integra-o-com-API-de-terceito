@@ -45,3 +45,4 @@ C:\Users\victo\source\repos\WebApplication5\bin\Debug\netcoreapp3.1\Swashbuckle.
 C:\Users\victo\source\repos\WebApplication5\obj\Debug\netcoreapp3.1\WebApplication5.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\victo\source\repos\WebApplication5\bin\Debug\netcoreapp3.1\Humanizer.dll
 C:\Users\victo\source\repos\WebApplication5\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\victo\source\repos\WebApplication5\bin\Debug\netcoreapp3.1\AutoMapper.dll

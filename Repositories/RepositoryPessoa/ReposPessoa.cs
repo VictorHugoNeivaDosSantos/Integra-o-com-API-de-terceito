@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using WebApplication5.Context;
 using WebApplication5.Model;
@@ -28,7 +27,9 @@ namespace WebApplication5.ServicesPessoa
 
         public async Task<PessoaModel> GetPessoaIDAsync(long id)
         {
-            return await _context.Pessoa.FirstOrDefaultAsync(f => f.Id == id);
+            return await _context.Pessoa
+                .Include(i => i.Endereco)
+                .FirstOrDefaultAsync(f => f.Id == id);
         }
 
         public async Task<List<PessoaModel>> ListPessoasAsync()
@@ -38,19 +39,16 @@ namespace WebApplication5.ServicesPessoa
 
         public async Task<string> DeletarPessoaAsync(long id)
         {
-            var pessoa = _context.Pessoa.Where(w => w.Id == id);
+            var pessoa = await _context.Pessoa.FirstOrDefaultAsync(w => w.Id == id) ?? throw new Exception("Pessoa não encontrada");
+            _context.Pessoa.Remove(pessoa);
+            await _context.SaveChangesAsync();
+            return "Exclusão realizada com sucesso!";
+        }
 
-            if (pessoa != null)
-            {
-                _context.Pessoa.Remove(pessoa.FirstOrDefault());
-                await _context.SaveChangesAsync();
-                return "Exclusão realizada com sucesso!";
-            }
-            else
-            {
-                return "Pessoa não encontrada";
-            }
-
+        public async Task EditarPessoa(PessoaModel pessoa)
+        {
+            _context.Pessoa.Update(pessoa);
+            await _context.SaveChangesAsync();
         }
     }
 }

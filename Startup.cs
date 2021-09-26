@@ -1,19 +1,15 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using WebApplication5.Cliente;
 using WebApplication5.Cliente.Interface;
 using WebApplication5.Context;
+using WebApplication5.DTO;
+using WebApplication5.Repositories.RepositoryPessoa;
 using WebApplication5.Services.PessoaServices;
 using WebApplication5.Services.PessoaServices.Interface;
 using WebApplication5.ServicesPessoa;
@@ -37,9 +33,12 @@ namespace WebApplication5
             services.AddHttpClient<viaCEP>("viacep");
             services.AddTransient<IviaCEP, viaCEP>();
             services.AddTransient<IServicePessoa, ServicePessoa>();
+            services.AddTransient<IRepositoryEndereco, RepositoryEndereco>();
             services.AddTransient<IReposPessoa, ReposPessoa>();
             services.AddDbContext<PessoaContext>((options) => options.UseNpgsql(Configuration.GetConnectionString("DBase")));
             services.AddSwaggerGen();
+            var mapConfig = new MapperConfiguration(mc => mc.AddProfile(new MapperDto2Entity()));
+            services.AddSingleton(mapConfig.CreateMapper());
 
         }
 

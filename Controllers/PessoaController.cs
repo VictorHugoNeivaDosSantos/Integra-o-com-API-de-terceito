@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using WebApplication5.Dto.Pessoa;
 using WebApplication5.Model;
 using WebApplication5.Services.PessoaServices.Interface;
 
@@ -42,7 +40,13 @@ namespace WebApplication5.Controllers
         [HttpDelete("{id}")]
         public async Task<string> DeletarPessoa(long id)
         {
-          return  await _servicePessoa.DeletarPessoaAsync(id);
+            return await _servicePessoa.DeletarPessoaAsync(id);
+        }
+
+        [HttpPut("{id}")]
+        public async Task EditarPessoa([FromRoute] long id, [FromBody] PessoaEditDto pessoa)
+        {
+            await _servicePessoa.EditarPessoa(id, pessoa);
         }
 
     }

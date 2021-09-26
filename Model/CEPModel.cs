@@ -1,15 +1,11 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace WebApplication5.Model
 {
     public class CEPModel
     {
 
-        public long ID { get; set; }
+        public long Id { get; set; }
         [JsonProperty("code")]
         public string Cep { get; set; }
         [JsonProperty("state")]

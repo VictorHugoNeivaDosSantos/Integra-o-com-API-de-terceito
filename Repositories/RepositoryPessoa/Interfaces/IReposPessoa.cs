@@ -8,8 +8,9 @@ namespace WebApplication5.ServicesPessoa.Interface
     public interface IReposPessoa
     {
         Task<PessoaModel> AddPessoaAsync(PessoaModel modelo);
-        Task<PessoaModel>GetPessoaIDAsync(long id);
-        Task <List<PessoaModel>> ListPessoasAsync();
+        Task<PessoaModel> GetPessoaIDAsync(long id);
+        Task<List<PessoaModel>> ListPessoasAsync();
         Task<string> DeletarPessoaAsync(long id);
+        Task EditarPessoa(PessoaModel pessoa);
     }
 }

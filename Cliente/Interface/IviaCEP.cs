@@ -5,6 +5,6 @@ namespace WebApplication5.Cliente.Interface
 {
     public interface IviaCEP
     {
-        Task<string> GetEnderecoAsync(string cep);
+        Task<CEPModel> GetEnderecoAsync(string cep);
     }
 }

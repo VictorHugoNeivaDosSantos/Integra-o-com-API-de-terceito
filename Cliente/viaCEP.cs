@@ -1,9 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using WebApplication5.Cliente.Interface;
 using WebApplication5.Model;
@@ -20,28 +17,23 @@ namespace WebApplication5.Cliente
             _factory = factory;
         }
 
-        public async Task<string> GetEnderecoAsync(string cep)
+        public async Task<CEPModel> GetEnderecoAsync(string cep)
         {
             string url = $"https://ws.apicep.com/cep/{cep}.json";
-
             var request = new HttpRequestMessage(HttpMethod.Get, url);
             var client = _factory.CreateClient("viacep");
             var response = await client.SendAsync(request);
+            string readString = await response.Content.ReadAsStringAsync();
 
             if (response.IsSuccessStatusCode)
             {
-                string readString = await response.Content.ReadAsStringAsync();        
-                return readString;
+                var endereco = JsonConvert.DeserializeObject<CEPModel>(readString);
+                return endereco;
             }
             else
             {
-                return "Erro ao buscar CEP;";
+                throw new Exception("Endereço não encontrado.");
             }
-
-
-
-
-
 
         }
 

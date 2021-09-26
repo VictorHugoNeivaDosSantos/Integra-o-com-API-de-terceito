@@ -1,9 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApplication5.Model
 {
@@ -16,23 +11,8 @@ namespace WebApplication5.Model
         public string Name { get; set; }
         [Column("cep")]
         public string CEP { get; set; }
-
-
-        [Column("uf")]
-        [JsonProperty("state")]
-        public string UF { get; set; }
-
-        [Column("cidade")]
-        [JsonProperty("city")]
-        public string Cidade { get; set; }
-
-        [Column("bairro")]
-        [JsonProperty("district")]
-        public string Bairro { get; set; }
-
-        [Column("rua")]
-        [JsonProperty("address")]
-        public string Rua { get; set; }
+        public CEPModel Endereco { get; set; }
+        public long EnderecoId { get; set; }
 
     }
 }
